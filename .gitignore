@@ -1,0 +1,9 @@
+.parcel-cache/
+.vscode/
+.vagrant/
+node_modules/
+dev/
+prod/
+not_trace/
+/**/.DS_Store
+.env

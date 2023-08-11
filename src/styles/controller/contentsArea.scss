@@ -1,0 +1,187 @@
+$color-code-map: (
+  "Cyan": "#00FFFF",
+  "DodgerBlue": "#1E90FF",
+  "MediumSlateBlue": "#7B68EE",
+  "BlueViolet": "#8A2BE2",
+  "Yellow": "#D2B104",
+  "Red": "#D24F04",
+);
+
+#keyboard,
+#performance {
+  svg {
+    @each $name, $color-code in $color-code-map {
+      .chordStarColorStroke#{$name} {
+        stroke: #{$color-code};
+      }
+      .chordStarColorFill#{$name} {
+        fill: #{$color-code};
+      }
+    }
+  }
+}
+
+// コードスター
+#keyboard {
+  z-index: 20;
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: block;
+  div {
+    display: flex;
+  }
+  .keyboardNoneArea {
+    height: 10%;
+  }
+  .keyboardKeyArea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35%;
+    .blackKey,
+    #blackKeyNone2,
+    .whiteKey {
+      width: 13%;
+      justify-content: center;
+    }
+  }
+  @keyframes chordStarKeysAnimate {
+    0% {
+      opacity: 0;
+      height: 0.5;
+    }
+    100% {
+      opacity: 1.0;
+    }
+  }
+  @keyframes chordStarKeysRotate {
+    0% {
+      transform: rotate3d(0, 0, 0, 0);
+    }
+    100% {
+      transform: rotate3d(360, 360, 360, 2turn);
+    }
+  }
+}
+
+#performance {
+  z-index: 21;
+  display: none;
+  #performanceArea {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    transform: rotate(-15deg);
+    // コードオブジェクト
+    #hideChordObj {
+      width: 0px;
+      height: 0px;
+    }
+    // ビートスター
+    #starGroup {
+      display: grid;
+      svg {
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+// 歌詞（共通）
+#containerMain,
+#containerSub {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  div {
+    padding: 0em;
+    margin: 0em;
+    display: inline;
+    p {
+      padding: 0.15em;
+      margin: 0em;
+      text-align: center;
+      user-select: none;
+      opacity: 0.75;
+      color: #F3F3F3;
+    }
+  }
+}
+
+#contentMain {
+  z-index: 100;
+  display: none;
+  // 歌詞（キャラ）
+  #containerMain {
+    align-items: center;
+    div p {
+      font-size: 3.7vw;
+    }
+    // キャラ
+    @keyframes showLyrics {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes hideLyrics {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+    #char {
+      > div {
+        animation: showLyrics 0.1s;
+      }
+      .hideChars {
+        animation: hideLyrics 0.1s;
+      }
+      .noun {
+        color: #80FF00;
+        font-size: 4.2vw;
+      }
+      .firstCharInEnglishChar {
+        margin-left: 20px;
+      }
+      .lastCharInEnglishChar {
+        margin-right: 20px;
+      }
+      @media (max-width: 768px) {
+        .firstCharInEnglishChar {
+          margin-left: 5px;
+        }
+        .lastCharInEnglishChar {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+#contentSub {
+  z-index: 110;
+  display: none;
+  // 歌詞（フレーズ）
+  #containerSub {
+    align-items: end;
+    bottom: 40;
+    div p {
+      font-size: 1.8vw;
+      background-color: #043C78;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+}

@@ -1,0 +1,207 @@
+// 動画
+#bg {
+  z-index: 10;
+  #media {
+    position: absolute;
+    top: 35;
+    left: 4;
+    @media (max-width: 768px){
+      .textalive-media-wrapper {
+        position: fixed;
+        bottom: 5;
+        right: 5;
+      }
+    }
+  }
+}
+
+// コントローラー・楽曲セレクター共通
+#musicController,
+#musicSelector,
+#indicator {
+  z-index: 999;
+  position: fixed;
+  display: block;
+}
+
+$primary-color: "#00FA9A"; // mediumspringgreen
+$primary-light-color: "#C8FAE7"; // 同一色相、同一明度の配色、一番薄い色
+$secondary-color: "#FA0060"; // コンプリメンタリー配色
+$secondary-light-color: "#FAC8DB"; // コンプリメンタリー配色: 同一色相、同一明度の配色、一番薄い色
+$primary-color-isplay: "#AFEEEE";
+$isPlay-opacity: 0.5;
+$disable-opacity: 0.0;
+
+// ベーススタイル
+input[type="range"] {
+  padding: 0px;
+  margin: 0px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  outline: none;
+  border-style: solid;
+  border-color: #{$primary-color};
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}
+input[type="range"].isPlay {
+  opacity: #{$isPlay-opacity};
+  border-style: solid;
+  border-color: #{$primary-color-isplay};
+  &::-webkit-slider-thumb {
+    background: #{$primary-color-isplay};
+  }
+}
+
+// コントローラー
+#musicController {
+  bottom: 40;
+  left: 10;
+  display: block;
+  align-items: center;
+  a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #{$primary-color};
+    user-select: none;
+    .material-symbols-outlined {
+      font-size: 48px;
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+    }
+    span {
+      user-select: none;
+    }
+  }
+  a:hover {
+    color: #{$secondary-color};
+  }
+  a.isPlay {
+    opacity: #{$isPlay-opacity};
+    color: #{$primary-color-isplay};
+  }
+  #soundArea {
+    display: grid;
+    justify-content: left;
+    padding-bottom: 10px;
+    #muteArea,
+    #volumeSlider {
+      width: 48px;
+    }
+    #volumeSlider {
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+      #volume {
+        // カスタマイズ
+        cursor: pointer;
+        height: 36px;
+        width: 200px;
+        border-width: 3px;
+        border-radius: 9px;
+        transform: rotate(-90deg);
+        &::-webkit-slider-runnable-track {
+          border-radius: 9px;
+        }
+        &::-webkit-slider-thumb {
+          background: #{$primary-color};
+          width: 16px;
+          height: 36px;
+          border-radius: 18px;
+        }
+      }
+      #volume.isPlay {
+        border-width: 3px;
+        &::-webkit-slider-thumb {
+          background: #{$primary-color-isplay};
+        }
+      }
+    }
+  }
+  #playerArea {
+    display: flex;
+    a {
+      margin-right: 8px;
+    }
+    a:last-child {
+      margin-right: 0px;
+    }
+    a.disabled {
+      opacity: #{$disable-opacity};
+    }
+    a.disabled:hover {
+      cursor: default;
+      color: #{$primary-color};
+    }
+  }
+}
+
+// 楽曲セレクター
+#musicSelector {
+  bottom: 40;
+  right: 20;
+  font-size: 12px;
+  font-weight: bold;
+  display: grid;
+  padding: 5px 5px 0;
+  .selectorButton {
+    cursor: pointer;
+    width: 200px;
+    margin: 5px 0px;
+    padding: 5px 10px;
+    border-width: 3px;
+    border-radius: 10px;
+    border-color: #{$primary-light-color};
+    border-style: outset;
+    justify-self: center;
+    text-align: center;
+    font-size: 16px;
+    color: #{$primary-color};
+  }
+  .selectorButton:hover,
+  .selectorButton.selected {
+    color: #F3F3F3;
+    background-color: #{$secondary-color};
+    border-color: #{$secondary-light-color};
+    border-style: ridge;
+  }
+}
+#musicSelector.hideSelect {
+  display: none;
+}
+
+// プログレスバー
+#indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  bottom: 10;
+  #progressBar {
+    width: 85%;
+    #progress {
+      // カスタマイズ
+      height: 20px;
+      width: 100%;
+      border-width: 3px;
+      border-radius: 10px;
+      &::-webkit-slider-runnable-track {
+        border-radius: 10px;
+      }
+      &::-webkit-slider-thumb {
+        width: 0;
+      }
+    }
+  }
+  #progressTime {
+    color: #FFFFFF;
+    margin-left: 20px;
+  }
+}

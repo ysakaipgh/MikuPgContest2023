@@ -1,0 +1,52 @@
+- 
+  const pageTitle = "星降る夜に";
+html
+  include ./contents/header.pug
+  body#background
+    //- ■背景やローディングエリアなど
+    //- ・背景の星
+    #bgStar
+      .wrap.small-star
+    //- ・TextAliveの楽曲情報、動画
+    #bg
+      #media
+    //- ・ローディングエリア
+    #loadingLayer
+      #loadingContents
+        include ./contents/loadingDef.pug
+        each obj in loadingContentList
+          div(id=`${obj.id}`)
+            strong #{obj.val}&nbsp;
+            span -
+    //- ■プレイヤー部分
+    #musicController
+      #soundArea
+        #muteArea
+          a#mute.disabled
+            span#muteIcon.material-symbols-outlined volume_up
+        #volumeSlider
+          input(type="range" id="volume" name="volume" min="0" max="100" step="1")
+      #playerArea
+        a#play.disabled
+          span.material-symbols-outlined play_circle
+    #musicSelector
+    #indicator
+      #progressBar
+        input(type="range" id="progress" name="progress" min="0" max="100" step="0.1" disabled)
+      #progressTime 0.00 / 0.00
+    //- ■メインの演出表示エリア
+    #keyboard
+    #performance
+      #performanceArea
+        #starGroup
+        #hideChordObj
+    #contentMain
+      #containerMain
+        div
+          p#char
+    #contentSub
+      #containerSub
+        div
+          p#phrase
+    //- ■メインのスクリプト読込は最後に
+    script(src="./scripts/index.js" type="module")

@@ -1,0 +1,85 @@
+@import url("controller/musicPlayer.scss");
+@import url("controller/loadingArea.scss");
+@import url("controller/contentsArea.scss");
+@import url("utils/background.scss");
+
+// 全体と動画の背景色は合わせる
+#background {
+  background: linear-gradient(
+    -225deg,
+    #000000 0%,
+    #000000 20%,
+    #161666 56%,
+    #000000 80%,
+    #000000 100%
+  );
+  #media {
+    background-color: #000000;
+  }
+}
+
+// 全体
+#background {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  overflow: hidden;
+}
+
+// ローテートスタイル
+#background.switchEmotion {
+  background: linear-gradient(
+    -225deg,
+    #2CD8D5 0%,
+    #C5C1FF 56%,
+    #FFBAC3 100%
+  );
+  #media {
+    background-color: #2CD8D5;
+  }
+  $color-code-map: (
+    "Cyan": "#FF0000",
+    "DodgerBlue": "#FF8F1F",
+    "MediumSlateBlue": "#00CC66",
+    "BlueViolet": "#66CC00",
+    "Yellow": "#7D8BD1",
+    "Red": "#7DB2D1",
+  );
+
+  #keyboard,
+  #performance {
+    svg {
+      @each $name, $color-code in $color-code-map {
+        .chordStarColorStroke#{$name} {
+          stroke: #{$color-code};
+        }
+        .chordStarColorFill#{$name} {
+          fill: #{$color-code};
+        }
+      }
+    }
+  }
+  #contentMain {
+    #containerMain {
+      #char {
+        color: #006400;
+        .noun {
+          color: #DC143C;
+        }
+      }
+    }
+  }
+  #contentSub {
+    #containerSub {
+      div p {
+        color: #043C78;
+        background-color: rgb(120, 64, 4, 0.3);
+      }
+    }
+  }
+  #indicator {
+    #progressTime {
+        color: #253331 ;
+    }
+  }
+}
